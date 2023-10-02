@@ -6,28 +6,28 @@
 #include "compare.h"
 #include "init_strings.h"
 
-void PrintfData (String* pointer, size_t n_lines)
+void PrintfData (String* pointer, OneginFile info)
 {
-    for (size_t i = 0; i < n_lines; i++)
+    for (size_t i = 0; i < info.n_lines; i++)
     {
         printf ("%s\n", pointer[i].str);
     }
     printf ("\n");
 }
 
-void PrintfOriginal (String* pointer, size_t n_lines)
+void PrintfOriginal (String* pointer, OneginFile info)
 {
-    PrintfData (pointer, n_lines);
+    PrintfData (pointer, info);
 }
 
-void PrintfSorted (String* pointer, size_t n_lines)
+void PrintfSorted (String* pointer, OneginFile info)
 {
-    qsort (pointer->str, n_lines, sizeof (char*), Compare);
-    PrintfData (pointer, n_lines);
+    qsort (pointer, info.n_lines, sizeof (String), Compare);
+    PrintfData (pointer, info);
 }
 
-void PrintfRevertSorted (String* pointer, size_t n_lines)
+void PrintfRevertSorted (String* pointer, OneginFile info)
 {
-    //qsort (pointer->str, n_lines, sizeof (char*), ReverseCompare);
-    PrintfData (pointer, n_lines);
+    qsort (pointer, info.n_lines, sizeof (String), ReverseCompare);
+    PrintfData (pointer, info);
 }

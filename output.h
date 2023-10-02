@@ -3,9 +3,9 @@
 
 #include "init_strings.h"
 
-void PrintfData (String* pointer, size_t n_lines);
-void PrintfOriginal (String* pointer, size_t n_lines);
-void PrintfSorted (String* pointer, size_t n_lines);
-void PrintfRevertSorted (String* pointer, size_t n_lines);
+void PrintfData (String* pointer, OneginFile info);
+void PrintfOriginal (String* pointer, OneginFile info);
+void PrintfSorted (String* pointer, OneginFile info);
+void PrintfRevertSorted (String* pointer, OneginFile info);
 
 #endif

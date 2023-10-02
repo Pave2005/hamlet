@@ -3,53 +3,50 @@
 #include "init_strings.h"
 
 
-char* ReadText (FILE* file, long file_size)
+char* ReadText (OneginFile info)
 {
-    char* buf = (char*)calloc (file_size + 1, sizeof (char));
-    fread (buf, sizeof (char), file_size, file);
+    char* buf = (char*)calloc (info.file_size + 1, sizeof (char));
+    fread (buf, sizeof (char), info.file_size, info.file);
     return buf;
 }
 
-size_t CountLines (char* buf, long file_size)
+size_t CountLines (OneginFile info)
 {
     size_t n_lines = 0;
-    buf[file_size] = '\0';
-    for (size_t i = 0; i < file_size; i++)
+    info.buf[info.file_size] = '\0';
+    for (size_t i = 0; i < info.file_size; i++)
     {
-        if (buf[i] == '\n')
+        if (info.buf[i] == '\n')
         {
             n_lines++;
-            buf[i] = '\0';
+            info.buf[i] = '\0';
         }
     }
     return n_lines;
 }
 
-String* InitStrings (String* pointer, char* buf, long file_size)
+String* InitStrings (String* pointer, OneginFile info)
 {
-    pointer[0].str = buf;
+    pointer[0].str = info.buf;
     size_t n = 1;
     size_t tmp = 0;
-    for (size_t i = 0; i < file_size; i++)
+    for (size_t i = 0; i < info.file_size; i++)
     {
-        if (buf[i] == '\0')
+        if (info.buf[i] == '\0')
         {
-            //printf ("%lu\n", i);
-            pointer[n].str = buf + i + 1;
+            pointer[n].str = info.buf + i + 1;
             pointer[n - 1].len = i - tmp;
             tmp = i + 1;
             n++;
         }
     }
-    //printf ("%lu\n", sizeof (&(pointer->str[])));
-    //printf ("%lu\n", sizeof (char*));
     return pointer;
 }
 
-long FileSize (FILE *file)
+long FileSize (OneginFile info)
 {
-    fseek (file, 0, SEEK_END);
-    long size = ftell (file);
-    fseek (file, 0, SEEK_SET);
+    fseek (info.file, 0, SEEK_END);
+    long size = ftell (info.file);
+    fseek (info.file, 0, SEEK_SET);
     return size;
 }

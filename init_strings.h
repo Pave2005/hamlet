@@ -7,9 +7,17 @@ struct String
     int len;
 };
 
-long FileSize (FILE *file);
-char* ReadText (FILE* file, long file_size);
-size_t CountLines (char* buf, long file_size);
-String* InitStrings (String* pointer, char* buf, long file_size);
+struct OneginFile
+{
+    FILE* file;
+    long file_size;
+    int n_lines;
+    char* buf;
+};
+
+long FileSize (OneginFile info);
+char* ReadText (OneginFile info);
+size_t CountLines (OneginFile info);
+String* InitStrings (String* pointer, OneginFile info);
 
 #endif

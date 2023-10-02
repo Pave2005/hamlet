@@ -8,28 +8,27 @@
 
 int main ()
 {
-    // struct OneginFile
-    // { FILE* file;
-    //   int file_size;
-    //   int n_lines;
-    //   ;
+    OneginFile info = {};
+    info.file = fopen ("str.txt", "r");
+    info.file_size = FileSize (info);
 
-    // OneginFileCtor(&onegin_file, "str.txt")
-    //                               file_name
-    // FILE* file = fopen(file_name
+    info.buf = ReadText (info);
+    info.n_lines = CountLines (info);
+    String* pointer = (String*)calloc (info.n_lines, sizeof(String*));
+    InitStrings (pointer, info);
 
-    FILE* file = fopen ("str.txt", "r");
-    long file_size = FileSize (file);
+    PrintfOriginal (pointer, info);
+    PrintfSorted (pointer, info);
 
-    char* buf = ReadText (file, file_size);
-    size_t n_lines = CountLines (buf, file_size);
-    String* pointer = (String*)calloc (n_lines, sizeof(String*));
-    InitStrings (pointer, buf, file_size);
-
-    PrintfOriginal (pointer, n_lines);
-    PrintfSorted (pointer, n_lines);
-
-    PrintfRevertSorted (pointer, n_lines);
+    PrintfRevertSorted (pointer, info);
 
     free (pointer);
 }
+
+//OneginFileCtor (OneginFile* info, String pointer)
+//{
+
+//}
+                              //file_name
+//FILE* file = fopen(file_name
+//OneginFileCtor (&onegin_file, "str.txt")
