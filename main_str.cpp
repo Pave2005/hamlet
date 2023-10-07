@@ -9,7 +9,7 @@
 int main ()
 {
     OneginFile info = {};
-    String* pointer = OneginFileCtor (&info);
+    String* pointer = OneginFileCtor (&info, "str.txt");
 
     PrintfOriginal (pointer, info);
     PrintfSorted (pointer, info);
@@ -18,11 +18,3 @@ int main ()
 
     free (pointer);
 }
-
-
-
-
-                              //file_name
-//FILE* file = fopen(file_name
-//OneginFileCtor (&onegin_file, "str.txt")
-

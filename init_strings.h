@@ -19,6 +19,6 @@ long FileSize (OneginFile info);
 char* ReadText (OneginFile info);
 size_t CountLines (OneginFile info);
 String* InitStrings (String* pointer, OneginFile info);
-String* OneginFileCtor (OneginFile* info);
+String* OneginFileCtor (OneginFile* info, const char* file_name);
 
 #endif

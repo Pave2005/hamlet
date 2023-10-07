@@ -43,9 +43,9 @@ String* InitStrings (String* pointer, OneginFile info)
     return pointer;
 }
 
-String* OneginFileCtor (OneginFile* info)
+String* OneginFileCtor (OneginFile* info, const char* file_name)
 {
-    info->file = fopen ("str.txt", "r");
+    info->file = fopen (file_name, "r");
     info->file_size = FileSize (*info);
     info->buf = ReadText (*info);
     info->n_lines = CountLines (*info);
