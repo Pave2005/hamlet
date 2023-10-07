@@ -43,6 +43,17 @@ String* InitStrings (String* pointer, OneginFile info)
     return pointer;
 }
 
+String* OneginFileCtor (OneginFile* info)
+{
+    info->file = fopen ("str.txt", "r");
+    info->file_size = FileSize (*info);
+    info->buf = ReadText (*info);
+    info->n_lines = CountLines (*info);
+    String* pointer = (String*)calloc (info->n_lines, sizeof(String*));
+    InitStrings (pointer, *info);
+    return pointer;
+}
+
 long FileSize (OneginFile info)
 {
     fseek (info.file, 0, SEEK_END);

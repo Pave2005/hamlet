@@ -9,13 +9,7 @@
 int main ()
 {
     OneginFile info = {};
-    info.file = fopen ("str.txt", "r");
-    info.file_size = FileSize (info);
-
-    info.buf = ReadText (info);
-    info.n_lines = CountLines (info);
-    String* pointer = (String*)calloc (info.n_lines, sizeof(String*));
-    InitStrings (pointer, info);
+    String* pointer = OneginFileCtor (&info);
 
     PrintfOriginal (pointer, info);
     PrintfSorted (pointer, info);
@@ -25,10 +19,10 @@ int main ()
     free (pointer);
 }
 
-//OneginFileCtor (OneginFile* info, String pointer)
-//{
 
-//}
+
+
                               //file_name
 //FILE* file = fopen(file_name
 //OneginFileCtor (&onegin_file, "str.txt")
+
