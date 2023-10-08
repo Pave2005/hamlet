@@ -13,7 +13,6 @@ int main ()
 
     PrintfOriginal (pointer, info);
     PrintfSorted (pointer, info);
-
     PrintfRevertSorted (pointer, info);
 
     free (pointer);
